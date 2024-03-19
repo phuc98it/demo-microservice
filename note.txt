@@ -1,3 +1,33 @@
 nest generate library common
     => libs/common : chứa những tài nguyên dùng chung, cho các module.
 
+npm i @nestjs/mongoose mongoose
+    => install mongo db
+
+nest generate module database -p <name_module>
+    -> CREATE libs/common/src/database/database.module.ts (85 bytes)
+    -> UPDATE libs/common/src/common.module.ts (282 bytes)
+
+- quản lí project trong "nest-cli.json",
+    cụ thể  ở "projects" : {
+        "common": { ... },          //-> đây là 1 module.
+        ...
+    }
+
+- Vì libs/common cung cấp các dịch vụ hộ trợ, nên phần định nghĩa module là ko cần thiết.
+    => xóa module common.
+- Mỗi module xác định dựa vào file index.ts gốc của module đó.
+    +) Do ta định nghĩa common ko phải là module nên cũng phải xóa nôi dung trong nó,
+    và thay vào đó là nội dung sẽ liên quan đến những service cung cấp cho việc dùng chung.
+
+
+nest generate module config -p <name_module>
+    -> ConfigModule : cấu hình chung - như biến môi trường.
+    -> ConfigService : để sử dụng biến môi trường.
+    -> DatabaseModule : khởi tạo connect DB.
+
+- sau khi setup 'DatabaseModule' ở libs/common xong -> ta import 'DatabaseModule' vào trong app module 'root'.
+
+- Muốn custom 'path' vào tsconfig.json -> paths -> khai báo theo ý muốn.
+
+[MongooseModule.forRoot('mongodb://localhost/sleepr')]
