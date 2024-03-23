@@ -31,3 +31,12 @@ nest generate module config -p <name_module>
 - Muốn custom 'path' vào tsconfig.json -> paths -> khai báo theo ý muốn.
 
 [MongooseModule.forRoot('mongodb://localhost/sleepr')]
+
+
+
+== Abstract - Schema ==
+- Tạo entity common chung : chứa 'id'.
+    -> các Schema khác sẽ extract từ đây mà ra.
+
+
+- Omit<TDocument, '_id'> : nhận đầu vào dạng TDocument, nhưng loại bỏ thuộc tính _id.
