@@ -50,7 +50,7 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
         return this.model.find(filterQuery).lean<TDocument[]>(true);
     }
 
-    async findOneAndDelte(filterQuery: FilterQuery<TDocument>) : Promise<TDocument> {
+    async findOneAndDelete(filterQuery: FilterQuery<TDocument>) : Promise<TDocument> {
         const document = await this.model.findOneAndDelete(filterQuery).lean<TDocument>(true);
         return document;
     }

@@ -40,3 +40,25 @@ nest generate module config -p <name_module>
 
 
 - Omit<TDocument, '_id'> : nhận đầu vào dạng TDocument, nhưng loại bỏ thuộc tính _id.
+
+
+== Revervation ==
+- là product mới => nest g app revervation.
+- set cho 'revervations' là root product.
+    => update trong file 'nest-cli.json'
+    +) sourceRoot : "apps/revervations/src"     -> source gốc của project
+    +) root : "apps/revervations"               -> nơi định nghĩa 'root project'
+    => nest start -> run : apps/revervations/*
+
+- Generate Feature : npm g resource <name_feature>
+
+- Common database : tạo nơi khai báo chung schema - by feature.
+    +) name: <T>Document.name
+    +) schema: <T>Schema
+
+
+
+== Từ vựng ==
+- associate: kết hợp.
+- reversation : giỏ hàng / hàng tồn / lượng sản phẩm.
+- invoice : hóa đơn.
