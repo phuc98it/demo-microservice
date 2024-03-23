@@ -56,6 +56,7 @@ nest generate module config -p <name_module>
     +) name: <T>Document.name
     +) schema: <T>Schema
 
+- npm i nestjs-pino pino-http pino-pretty
 
 
 == Từ vựng ==
