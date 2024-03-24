@@ -1,14 +1,21 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { ReservationsService } from './reservations.service';
 import { CreateReservationDto } from './dto/create-reservation.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
+import { JwtAuthGuard } from '@app/common/auth';
+import { CurrentUser, UserDto } from '@app/common';
 
 @Controller('reservations')
 export class ReservationsController {
   constructor(private readonly reservationsService: ReservationsService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() createReservationDto: CreateReservationDto) {
+  create(
+    @Body() createReservationDto: CreateReservationDto,
+    @CurrentUser() user: any,
+  ) {
+    console.log("USER === ", user);
     return this.reservationsService.create(createReservationDto);
   }
 

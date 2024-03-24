@@ -75,6 +75,12 @@ run: đứng từ folder reservations
 chạy với ko có 'docker-compose'
 chạy có 'docker-compose'    : docker compose up 
 
+
+@Payload() data : any === request.data
+    => data.user === request.user 
+tap : res = data.user
+    -> dữ liệu trả về  - được định nghĩa ở common/dto/UserDto (có thêm trường _id)
+
 == Từ vựng ==
 - associate: kết hợp.
 - reversation : giỏ hàng / hàng tồn / lượng sản phẩm.
