@@ -9,8 +9,7 @@ export class ReservationsRepository extends AbstractRepository<ReservationDocume
     protected readonly logger = new Logger(ReservationsRepository.name);
 
     constructor(
-        @InjectModel(ReservationDocument.name)
-        reservationModel: Model<ReservationDocument>
+        @InjectModel(ReservationDocument.name) reservationModel: Model<ReservationDocument>
     ) {
         super(reservationModel);
     }

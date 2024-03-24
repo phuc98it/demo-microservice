@@ -56,8 +56,24 @@ nest generate module config -p <name_module>
     +) name: <T>Document.name
     +) schema: <T>Schema
 
-- npm i nestjs-pino pino-http pino-pretty
 
+== validator: npm i nestjs-pino pino-http pino-pretty
+
+== auth ==
+- nest g app auth
+- nest g module auth 
+- nest g module users
+
+== Docker ==
+- ứng dụng rất tốt khi run multi images at once.
+run: đứng từ folder reservations   
+    +) docker build ../../ -f Dockerfile -t sleepr_reservations     // -t : tag - đánh dấu tên image đc tạo ra
+        -> build : tạo ra image 'sleepr_reservations'.
+    +) docker run sleepr_reservations
+        -> run image.
+
+chạy với ko có 'docker-compose'
+chạy có 'docker-compose'    : docker compose up 
 
 == Từ vựng ==
 - associate: kết hợp.
