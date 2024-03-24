@@ -8,11 +8,16 @@ import * as Joi from 'joi';
 @Module({
   imports: [
     NestConfigModule.forRoot({
+      isGlobal: true,
       validationSchema: Joi.object({
         MONGO_USERNAME: Joi.string().required(),
         MONGO_PASSWORD: Joi.string().required(),
         MONGO_DATABASE: Joi.string().required(),
         MONGO_HOST: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
+        JWT_EXPIRATION: Joi.string().required(),
+        PORT: Joi.number().required(),
+        PORT_AUTH: Joi.number().required(),
       }),
     }),
   ],
