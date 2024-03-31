@@ -24,7 +24,10 @@ import * as Joi from 'joi';
         PORT_PAYMENT: Joi.number().required(),
         PAYMENTS_HOST: Joi.string().required(),
         PAYMENTS_PORT: Joi.number().required(),
-        STRIPE_SECRET_KEY: Joi.string().required()
+        STRIPE_SECRET_KEY: Joi.string().required(),
+        PORT_NOTIFICATION: Joi.number().required(),
+        NOTIFICATION_HOST: Joi.string().required(),
+        NOTIFICATION_PORT: Joi.number().required(),
       }),
     }),
   ],

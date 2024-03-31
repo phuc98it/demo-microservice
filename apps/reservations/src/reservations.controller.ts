@@ -16,7 +16,7 @@ export class ReservationsController {
     @CurrentUser() user: any,
   ) {
     console.log("USER111111111 === ", user);
-    return this.reservationsService.create(createReservationDto, user.id);
+    return this.reservationsService.create(createReservationDto, user);
   }
 
   @Get()
