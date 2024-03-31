@@ -81,7 +81,29 @@ chạy có 'docker-compose'    : docker compose up
 tap : res = data.user
     -> dữ liệu trả về  - được định nghĩa ở common/dto/UserDto (có thêm trường _id)
 
+
+== payment ==
+- nest g app payments
+- npm i stripe
+
+feature : create charge (thanh toán)
+    1. Xác thực 'card'  -> áp dụng 'paymentMethods' - return Card1 (Thông tin thẻ)
+    Card1 {         
+        cvc?: string;
+        exp_month: number;
+        exp_year: number;
+        networks?: Card1.Networks;
+        number: string;
+    }
+
+    2. Xác nhận 'đơn hàng' -> áp dụng 'paymentIntents'
+    +) thanh toán = 'card' ?
+    +) cấu hình : giá thành hóa đơn ?
+    +) xác thực - confirm : true.
+
 == Từ vựng ==
-- associate: kết hợp.
-- reversation : giỏ hàng / hàng tồn / lượng sản phẩm.
-- invoice : hóa đơn.
+- associate     : kết hợp.
+- reversation   : giỏ hàng / hàng tồn / lượng sản phẩm / đơn hàng.
+- invoice       : hóa đơn.
+- charge        : thanh toán - tiền phí.
+- amout         : số  lượng.

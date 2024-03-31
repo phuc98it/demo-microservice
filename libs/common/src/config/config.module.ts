@@ -19,8 +19,12 @@ import * as Joi from 'joi';
         PORT: Joi.number().required(),
         PORT_AUTH: Joi.number().required(),
         TCP_PORT_AUTH: Joi.number().required(),
-        AUTH_HOST: Joi.number().required(),
+        AUTH_HOST: Joi.string().required(),
         AUTH_PORT: Joi.number().required(),
+        PORT_PAYMENT: Joi.number().required(),
+        PAYMENTS_HOST: Joi.string().required(),
+        PAYMENTS_PORT: Joi.number().required(),
+        STRIPE_SECRET_KEY: Joi.string().required()
       }),
     }),
   ],
