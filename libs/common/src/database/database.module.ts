@@ -7,17 +7,17 @@ import { ConfigModule } from '../config';
   imports: [
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => {
-        const username = configService.get('MONGO_USERNAME');
-        const password = configService.get('MONGO_PASSWORD');
-        const database = configService.get('MONGO_DATABASE');
-        const host = configService.get('MONGO_HOST');
-
-        return {
-          uri: `mongodb://${username}:${password}@${host}`,
-          dbName: database,
-        };
-      },
+      useFactory: async (configService: ConfigService) => ({
+        // const username = configService.get('MONGO_USERNAME');
+        // const password = configService.get('MONGO_PASSWORD');
+        // const database = configService.get('MONGO_DATABASE');
+        // const host = configService.get('MONGO_HOST');
+        uri: configService.get('MONGODB_URI'),
+        // return {
+        //   uri: `mongodb://${username}:${password}@${host}`,
+        //   dbName: database,
+        // };
+      }),
       inject: [ConfigService],
     }),
   ],

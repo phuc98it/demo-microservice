@@ -1,25 +1,60 @@
-version: "3"
 services:
-  # reservations:
-  #   build:
-  #     context: .
-  #     dockerfile: ./apps/reservations/Dockerfile
-  #     target: development
-  #   command: npm run start:dev reservations
-  #   ports:
-  #     - '3000:3000'
-  #   networks:
-  #     - mongo
+  reservations:
+    build:
+      context: .
+      dockerfile: ./apps/reservations/Dockerfile
+      target: development
+    command: npm run start:dev reservations
+    env_file:
+      - ./.env
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/usr/src/app
+
+  auth:
+    build:
+      context: .
+      dockerfile: ./apps/auth/Dockerfile
+      target: development
+    command: npm run start:dev auth
+    env_file:
+      - ./.env
+    ports:
+      - '3001:3001'
+    volumes:
+      - .:/usr/src/app
+
+  payments:
+    build:
+      context: .
+      dockerfile: ./apps/payments/Dockerfile
+      target: development
+    command: npm run start:dev payments
+    env_file:
+      - ./.env
+    volumes:
+      - .:/usr/src/app
+
+  notifications:
+    build:
+      context: .
+      dockerfile: ./apps/notifications/Dockerfile
+      target: development
+    command: npm run start:dev notifications
+    env_file:
+      - ./.env
+    volumes:
+      - .:/usr/src/app
 
   mongo:
-    image: mongo:latest
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
-      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
-    ports:
-      - '27017:27017'
-
-# networks:
-#   mongo:
-#     driver: bridge
+    image: mongo
+  
+  # mongo:
+  #   image: mongo:8.0.0-rc20-noble
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+  #     MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+  #     MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+  #   ports:
+  #     - '27017:27017'
