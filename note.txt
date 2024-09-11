@@ -107,3 +107,30 @@ feature : create charge (thanh toán)
 - invoice       : hóa đơn.
 - charge        : thanh toán - tiền phí.
 - amout         : số  lượng.
+
+
+=== ENV ===
+MONGO_USERNAME=admin
+MONGO_PASSWORD=admin
+MONGO_DATABASE=sleepr
+MONGO_HOST=mongo:27017
+
+MONGODB_URI=mongodb://mongo:27017/sleepr
+
+JWT_SECRET=4YdOfiPtyv1aYAjSdr7MidPOnmZHtT4AdLAvQldpHvD2SROwEXS7E1JQHhUn0XEy0bOCCHnI8zIxWKocI7ASb7Kh3uQ0spn9FsZ
+JWT_EXPIRATION=3600
+
+PORT=3000
+
+PORT_AUTH=3001
+TCP_PORT_AUTH=3002
+AUTH_HOST=0.0.0.0
+AUTH_PORT=3002
+
+PORT_PAYMENT=3003
+PAYMENTS_HOST=0.0.0.0
+PAYMENTS_PORT=3003
+
+PORT_NOTIFICATION=3004
+NOTIFICATION_HOST=0.0.0.0
+NOTIFICATION_PORT=3004
