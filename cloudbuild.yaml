@@ -1,7 +1,7 @@
 steps:
   # Reservations
   - name: 'gcr.io/cloud-builder/docker'
-    arg:
+    args:
       [
         'build',
         '-t',
@@ -11,12 +11,12 @@ steps:
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
-    arg:
+    args:
       ['push', 'asia-east1-docker.pkg.dev/eminent-carver-435308-s2/reservations/production']
 
   # Auth
   - name: 'gcr.io/cloud-builder/docker'
-    arg:
+    args:
       [
         'build',
         '-t',
@@ -26,12 +26,12 @@ steps:
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
-    arg:
+    args:
       ['push', 'asia-east1-docker.pkg.dev/eminent-carver-435308-s2/auth/production']
 
   # Notifications
   - name: 'gcr.io/cloud-builder/docker'
-    arg:
+    args:
       [
         'build',
         '-t',
@@ -41,12 +41,12 @@ steps:
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
-    arg:
+    args:
       ['push', 'asia-east1-docker.pkg.dev/eminent-carver-435308-s2/notifications/production']
 
   # Payments
   - name: 'gcr.io/cloud-builder/docker'
-    arg:
+    args:
       [
         'build',
         '-t',
@@ -56,6 +56,6 @@ steps:
         '.',
       ]
   - name: 'gcr.io/cloud-builders/docker'
-    arg:
+    args:
       ['push', 'asia-east1-docker.pkg.dev/eminent-carver-435308-s2/payments/production']
   
