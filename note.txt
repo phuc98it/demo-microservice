@@ -157,3 +157,6 @@ Tách :
         => Refactor lại Dockerfile - chỉ lấy những resource liên quan tới mỗi module/service đó.
     3. Dependencies chia ra các module/service có ràng buộc đến đó.
         => Giảm tải đc name_module ko phải chứa các libary không cần thiết.
+
+
+Test ...
