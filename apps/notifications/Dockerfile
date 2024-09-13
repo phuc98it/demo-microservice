@@ -13,7 +13,6 @@ RUN pnpm install
 
 COPY apps/notifications apps/notifications
 COPY libs libs
-COPY .env .env
 
 RUN cd apps/notifications && pnpm install
 

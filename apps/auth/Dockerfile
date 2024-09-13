@@ -13,7 +13,6 @@ RUN pnpm install
 
 COPY apps/auth apps/auth
 COPY libs libs
-COPY .env .env
 
 RUN cd apps/auth && pnpm install
 

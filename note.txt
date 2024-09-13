@@ -157,6 +157,24 @@ Tách :
         => Refactor lại Dockerfile - chỉ lấy những resource liên quan tới mỗi module/service đó.
     3. Dependencies chia ra các module/service có ràng buộc đến đó.
         => Giảm tải đc name_module ko phải chứa các libary không cần thiết.
+        
+=== Kube ===
+1. kubectl install sleepr .	==> build -> run
+	+) fail - vì denied access on image (ko cho pull repo từ cloud).
+2. Tạo Key (trên cloud) - cung cấp 'key' tương tác với Cloud.
+	+) kubectl create secret docker-registry gcr-json-key --docker-server=asia-east1-docker.pkg.dev --docker-username=_json_key --docker-password="$(cat ./eminent-carver-435308-s2-024acb7b0198.json)" --docker-email=phucpham98.it.vn@gmail.com
+	+) kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "gcr-json-key"}]}'
+	
+3. Tạo secret chứa biến env	url connect db.
+	+) kubectl create secret generic mongodb --from-literal=connectionString=mongodb+srv://<account>:<password>@<url-db>/
+	
+	
+Lưu ý:
+	+) kubectl get secret	=> check "Key" đã đc tạo trong kube - để connect đến hệ thống.
+	+) kubectl get secret <tên_secret> -o yaml	=> xem giá trị base64 của connectionString
+	+) kubectl get po			=> list các "Container" trong kubectl.
+	+) kubectl describe po <tên_po>	=> xem thông tin Container.
+	+) kubectl logs <tên_po>		=> xem log của Container đó.
+	+) kubectl install <tên_Chart> .	=> build image và run container.
+	
 
-
-Test ...

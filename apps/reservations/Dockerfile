@@ -13,7 +13,6 @@ RUN pnpm install
 
 COPY apps/reservations apps/reservations
 COPY libs libs
-COPY .env .env
 
 RUN pnpm run build reservations
 
