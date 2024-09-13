@@ -1,0 +1,61 @@
+steps:
+  # Reservations
+  - name: 'gcr.io/cloud-builder/docker'
+    arg:
+      [
+        'build',
+        '-t',
+        'asia-east1-docker.pkg.dev/eminent-carver-435308-s2/reservations/production',
+        '-f',
+        'apps/reservations/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    arg:
+      ['push', 'asia-east1-docker.pkg.dev/eminent-carver-435308-s2/reservations/production']
+
+  # Auth
+  - name: 'gcr.io/cloud-builder/docker'
+    arg:
+      [
+        'build',
+        '-t',
+        'asia-east1-docker.pkg.dev/eminent-carver-435308-s2/auth/production',
+        '-f',
+        'apps/auth/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    arg:
+      ['push', 'asia-east1-docker.pkg.dev/eminent-carver-435308-s2/auth/production']
+
+  # Notifications
+  - name: 'gcr.io/cloud-builder/docker'
+    arg:
+      [
+        'build',
+        '-t',
+        'asia-east1-docker.pkg.dev/eminent-carver-435308-s2/notifications/production',
+        '-f',
+        'apps/notifications/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    arg:
+      ['push', 'asia-east1-docker.pkg.dev/eminent-carver-435308-s2/notifications/production']
+
+  # Payments
+  - name: 'gcr.io/cloud-builder/docker'
+    arg:
+      [
+        'build',
+        '-t',
+        'asia-east1-docker.pkg.dev/eminent-carver-435308-s2/payments/production',
+        '-f',
+        'apps/payments/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    arg:
+      ['push', 'asia-east1-docker.pkg.dev/eminent-carver-435308-s2/payments/production']
+  

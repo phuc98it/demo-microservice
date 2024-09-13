@@ -134,3 +134,26 @@ PAYMENTS_PORT=3003
 PORT_NOTIFICATION=3004
 NOTIFICATION_HOST=0.0.0.0
 NOTIFICATION_PORT=3004
+
+=== GCP ===
+1. docker build -t reservations -f . ../../
+
+2. docker tag revervations <link repo gpc>/production
+
+3. docker image push <link repo gpc>/production
+
+4. Apply with docker-compose.
+	docker compose up --build
+
+pnpm : tích kiệm bộ nhớ hơn so với node/yarn.
+    +) pnpm đạt được tốc độ cài đặt nhanh nhờ vào việc không có blocking time giữa các step.
+    +) Bằng cách ánh xạ tới 'content-addressable store'.
+    +) lần đầu setup sẽ chậm hơn so với npm/yarn.
+
+
+Tách : 
+    1. UserSchema - ràng buộc với decorator @CurrentUser(...) -> nên tạo thêm ở @Common.
+    2. Việc build từ docker-compose (run dev env) khác so với redirect vào folder để build => COPY resource . tới nơi làm việc là khác nhau.
+        => Refactor lại Dockerfile - chỉ lấy những resource liên quan tới mỗi module/service đó.
+    3. Dependencies chia ra các module/service có ràng buộc đến đó.
+        => Giảm tải đc name_module ko phải chứa các libary không cần thiết.
