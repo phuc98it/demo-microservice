@@ -172,9 +172,9 @@ Tách :
 Lưu ý:
 	+) kubectl get secret	=> check "Key" đã đc tạo trong kube - để connect đến hệ thống.
 	+) kubectl get secret <tên_secret> -o yaml	=> xem giá trị base64 của connectionString
-	+) kubectl get po			=> list các "Container" trong kubectl.
-	+) kubectl describe po <tên_po>	=> xem thông tin Container.
-	+) kubectl logs <tên_po>		=> xem log của Container đó.
+	+) kubectl get po			        => list các "Container" trong kubectl.
+	+) kubectl describe po <tên_po>	    => xem thông tin Container.
+	+) kubectl logs <tên_po>		    => xem log của Container đó.
 	+) kubectl install <tên_Chart> .	=> build image và run container.
 	
 
