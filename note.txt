@@ -142,7 +142,7 @@ NOTIFICATION_PORT=3004
 
 3. docker image push <link repo gpc>/production
 
-4. Apply with docker-compose.
+4. Apply with docker-compose.   (để test ở local)
 	docker compose up --build
 
 pnpm : tích kiệm bộ nhớ hơn so với node/yarn.
@@ -176,5 +176,8 @@ Lưu ý:
 	+) kubectl describe po <tên_po>	    => xem thông tin Container.
 	+) kubectl logs <tên_po>		    => xem log của Container đó.
 	+) kubectl install <tên_Chart> .	=> build image và run container.
+	
+	+) kubectl create service clusterip notifications --tcp=3000 --dry-run=client -o yaml > service.yaml
+	+) kubectl config get-contexts	=> show context
 	
 

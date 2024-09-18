@@ -1,13 +1,22 @@
 import { Module } from '@nestjs/common';
+import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import * as Joi from 'joi';
 import { PaymentsController } from './payments.controller';
 import { PaymentsService } from './payments.service';
-import { ConfigModule, DatabaseModule, LoggerModule, NOTIFICATIONS_SERVICE } from '@app/common';
-import { ClientsModule, Transport } from '@nestjs/microservices';
-import { ConfigService } from '@nestjs/config';
+import { LoggerModule, NOTIFICATIONS_SERVICE } from '@app/common';
 
 @Module({
   imports: [
-    ConfigModule, 
+    ConfigModule.forRoot({
+      isGlobal: true,
+      validationSchema: Joi.object({
+        PORT_PAYMENT: Joi.number().required(),
+        NOTIFICATION_HOST: Joi.string().required(),
+        NOTIFICATION_PORT: Joi.number().required(),
+        STRIPE_SECRET_KEY: Joi.string().required(),
+      }),
+    }), 
     LoggerModule,
     ClientsModule.registerAsync([
       {

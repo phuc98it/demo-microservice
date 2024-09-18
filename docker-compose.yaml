@@ -6,7 +6,7 @@ services:
       target: development
     command: npm run start:dev reservations
     env_file:
-      - ./.env
+      - ./apps/reservations/.env
     ports:
       - '3000:3000'
     volumes:
@@ -19,7 +19,7 @@ services:
       target: development
     command: npm run start:dev auth
     env_file:
-      - ./.env
+      - ./apps/auth/.env
     ports:
       - '3001:3001'
     volumes:
@@ -32,7 +32,7 @@ services:
       target: development
     command: npm run start:dev payments
     env_file:
-      - ./.env
+      - ./apps/payments/.env
     volumes:
       - .:/usr/src/app
 
@@ -43,7 +43,7 @@ services:
       target: development
     command: npm run start:dev notifications
     env_file:
-      - ./.env
+      - ./apps/notifications/.env
     volumes:
       - .:/usr/src/app
 
