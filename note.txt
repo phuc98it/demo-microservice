@@ -168,6 +168,7 @@ Tách :
 3. Tạo secret chứa biến env	url connect db.
 	+) kubectl create secret generic mongodb --from-literal=connectionString=mongodb+srv://<account>:<password>@<url-db>/
 	
+*) helm upgrade sleepr .	: update lại - cho mỗi lần cập nhật ở file 'deployment.yaml'
 	
 Lưu ý:
 	+) kubectl get secret	=> check "Key" đã đc tạo trong kube - để connect đến hệ thống.
@@ -176,8 +177,9 @@ Lưu ý:
 	+) kubectl describe po <tên_po>	    => xem thông tin Container.
 	+) kubectl logs <tên_po>		    => xem log của Container đó.
 	+) kubectl install <tên_Chart> .	=> build image và run container.
+	+) kubectl get svc			=> lấy ra list các service - thông tin ip của service đó.
 	
 	+) kubectl create service clusterip notifications --tcp=3000 --dry-run=client -o yaml > service.yaml
 	+) kubectl config get-contexts	=> show context
-	
+
 

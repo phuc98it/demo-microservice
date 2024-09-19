@@ -36,6 +36,21 @@ export class ReservationsService {
       );
   }
 
+  async createTest(
+    startDate,
+    endDate,
+    userId
+  ) {
+    const abc = await this.reservationsRepository.create({
+      timestamp: new Date(),
+      startDate,
+      endDate,
+      userId,
+      invoiceId: "abcd"
+    })
+    return abc
+  }
+
   async findAll() {
     return this.reservationsRepository.find({});
   }

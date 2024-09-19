@@ -17,3 +17,8 @@ spec:
       containers:
       - image: asia-east1-docker.pkg.dev/eminent-carver-435308-s2/notifications/production
         name: notifications
+        env:
+          - name: PORT_NOTIFICATION
+            value: '3004'
+        ports:
+          - containerPort: 3004

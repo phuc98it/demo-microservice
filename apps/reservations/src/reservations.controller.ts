@@ -19,6 +19,16 @@ export class ReservationsController {
     return this.reservationsService.create(createReservationDto, user);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Post('test')
+  createTest(
+    @Body() createReservationDto: CreateReservationDto,
+    @CurrentUser() user: any,
+  ) {
+    console.log("USER222222222222222 === ", user);
+    return this.reservationsService.createTest(createReservationDto.startDate,createReservationDto.endDate, user._id);
+  }
+
   @Get()
   findAll() {
     return this.reservationsService.findAll();
