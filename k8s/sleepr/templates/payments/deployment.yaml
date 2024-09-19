@@ -21,7 +21,7 @@ spec:
           - name: PORT_PAYMENT
             value: '3003'
           - name: NOTIFICATION_HOST
-            value: '0.0.0.0'
+            value: 'notifications'
           - name: NOTIFICATION_PORT
             value: '3004'
           - name: STRIPE_SECRET_KEY
