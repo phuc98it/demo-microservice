@@ -15,7 +15,7 @@ spec:
         app: reservations
     spec:
       containers:
-      - image: asia-east1-docker.pkg.dev/eminent-carver-435308-s2/reservations/production
+      - image: 490004615533.dkr.ecr.ap-southeast-1.amazonaws.com/reservations:latest
         name: reservations
         env:
           - name: MONGODB_URI

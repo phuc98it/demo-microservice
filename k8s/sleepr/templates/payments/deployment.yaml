@@ -15,7 +15,7 @@ spec:
         app: payments
     spec:
       containers:
-      - image: asia-east1-docker.pkg.dev/eminent-carver-435308-s2/payments/production
+      - image: 490004615533.dkr.ecr.ap-southeast-1.amazonaws.com/payments:latest
         name: payments
         env:
           - name: PORT_PAYMENT

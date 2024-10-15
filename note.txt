@@ -178,8 +178,55 @@ Lưu ý:
 	+) kubectl logs <tên_po>		    => xem log của Container đó.
 	+) kubectl install <tên_Chart> .	=> build image và run container.
 	+) kubectl get svc			=> lấy ra list các service - thông tin ip của service đó.
-	
+	+) kubectl get ing          => show ingress - port http 80
 	+) kubectl create service clusterip notifications --tcp=3000 --dry-run=client -o yaml > service.yaml
 	+) kubectl config get-contexts	=> show context
+	+) kubectl config use-context <name_context>	=> switch context
+
+
+=== Deploy - AWS ===
+1. CodePipeline
+    1.1 Define file 'buildspec.yaml'.
+        - Khai báo các steps:
+            + pre_build : <url> -> ECR 
+            + build     : build Dockerfile và đính tag -> <url_ECR>
+            + post_build: push 'image' -> to ECR
+    1.2 Setup 'Codepipeline' -> connect 'repo' ở Github
+            +) Tạo 'CodeBuild' -> đỉnh định file 'buildspec.yaml' trong repo    => để  Build
+    1.3 IAM : gán quyền 'EC2InstanceProfileForImageBuilderECRContainerBuilds' để  auto build .
+
+2. EKS : tương tác = 'eksctl'
+    2.1 Setup 'eksctl' on Linux - use in Terminal
+    2.2 Tạo 'cluster.yaml' -> để quản lí các nodes = (kuber cluster)
+        +) chỉ định tên và kiểu instance EC2 + số  lượng.
+        => RUN : eksctl create cluster -f ./cluster.yaml 
+            (EKS cluster <name> và <region> đã sẵn sàng).
+        +) check:
+            kubectl get nodes                       : hiển thị các nodes
+            eks get nodegroups --cluster sleepr     : chỉ ra thông số của cluster
+    2.3 Tạo các 'keys' được mã hóa -> ref 'secrets'
+    2.4 check các 'pod' : kubectl get po
+    2.5 Scale nodegroups
+        eksctl scale nodegroup ng-1 -N 5 --cluster sleepr -M 5
+            +) eksctl scale nodegroup   : scale số lương Node Group trong EKS.
+            +) ng-1                     : tên của Node Group
+            +) -N 5                     : thiết lập số lượng 5 node trong Group
+            +) --cluster sleepr         : tên của EKS là 'sleepr'
+            +) -M 5                     : giá trị tối đa của số lượng nút mà node group có thể mở rộng.
+
+3. Load Balancer
+    - làm theo các bước https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/deploy/installation/#configure-iam
+        (option A : step 1 -> 2 -> 3 -> 4)
+
+
+    - Add 'Load Balancer' controller:
+        +) Add the EKS chart repo to Helm
+            helm repo add eks https://aws.github.io/eks-charts
+
+        +) Helm install command for clusters with IRSA:
+            helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=sleepr --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller
+
+    - apply YAML: làm theo các bước https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/deploy/installation/#apply-yaml
+        (Edit file 'ingress.yaml')
 
 
